@@ -3,7 +3,7 @@ import { nameShorter } from "../../utils";
 
 const ChatUser = () => {
   return (
-    <div className="flex gap-3 items-center px-2  hover:bg-violet-500/70 rounded-md hover:translate-x-1 duration-250 cursor-pointer border-b border-zinc-600 shadow-sm bg-black/30">
+    <div className="flex gap-1 items-center px-2  hover:bg-violet-500/70 rounded-md hover:translate-x-1 duration-250 cursor-pointer border-b border-zinc-600 shadow-sm bg-black/30">
       <Badge
         content=""
         color="success"
@@ -17,11 +17,12 @@ const ChatUser = () => {
           className="transition-transform m-2"
           color="secondary"
           name={nameShorter("Jason Hughes")}
+          size="sm"
           src=""
         />
       </Badge>
       <div className="flex flex-col">
-        <h1 className="font-semibold text-xl"> Rofikul islam</h1>
+        <h1 className="font-semibold "> Rofikul islam</h1>
         <p className="text-xs">hi</p>
       </div>
     </div>

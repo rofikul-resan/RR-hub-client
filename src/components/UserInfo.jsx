@@ -11,23 +11,19 @@ import { AiOutlineLogout } from "react-icons/ai";
 
 const UserInfo = () => {
   return (
-    <Dropdown placement="bottom-end" className="mr-2">
+    <Dropdown placement="bottom-start" className="mr-2 bg-black/80 text-white">
       <DropdownTrigger>
         <Avatar
           isBordered
-          //   as="button"
-          className="transition-transform  mr-2"
+          as="button"
+          className="transition-transform  mr-2 w-7 h-7"
           color="secondary"
           name={nameShorter("Jason Hughes")}
           size="sm"
           src=""
         />
       </DropdownTrigger>
-      <DropdownMenu aria-label="Profile Actions" className="text-black">
-        <DropdownItem key="profile" className="h-14 gap-2">
-          <p className="font-semibold">Signed in as</p>
-          <p className="font-semibold">zoey@example.com</p>
-        </DropdownItem>
+      <DropdownMenu aria-label="Profile Actions">
         <DropdownItem key="settings">My Settings</DropdownItem>
         <DropdownItem key="team_settings">Team Settings</DropdownItem>
         <DropdownItem key="analytics">Analytics</DropdownItem>
