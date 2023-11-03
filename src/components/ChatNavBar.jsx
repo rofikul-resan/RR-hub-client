@@ -7,11 +7,10 @@ import {
   NavbarContent,
 } from "@nextui-org/react";
 import { AiOutlineSearch } from "react-icons/ai";
+import { nameShorter } from "../utils";
+import UserInfo from "./UserInfo";
 
 const ChatNavBar = () => {
-  const nameShorter = (name) => {
-    return name.slice(0, 1).toUpperCase();
-  };
   return (
     <Navbar maxWidth="full" className="bg-black/60">
       <NavbarBrand className="flex gap-2">
@@ -52,7 +51,9 @@ const ChatNavBar = () => {
           </div>
         </div>
       </NavbarContent>
-      <NavbarContent></NavbarContent>
+      <NavbarContent justify="end">
+        <UserInfo />
+      </NavbarContent>
     </Navbar>
   );
 };

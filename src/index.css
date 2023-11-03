@@ -6,7 +6,7 @@
 @tailwind utilities;
 
 * {
-  color: antiquewhite;
+
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -26,6 +26,8 @@ html {
   height: 100vh;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  color: antiquewhite;
+
 }
 
 #root::-webkit-scrollbar {
