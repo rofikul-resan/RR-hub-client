@@ -8,6 +8,12 @@
 * {
 
   font-family: 'Open Sans', sans-serif;
+  overflow: scroll;
+  -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
 }
 
 .logo-font {
@@ -22,18 +28,27 @@ html {
 }
 
 #root {
-  overflow: scroll;
+
   height: 100vh;
-  -ms-overflow-style: none;
   scrollbar-width: none;
   color: antiquewhite;
 
 }
 
-#root::-webkit-scrollbar {
-  display: none;
-}
+
 
 .border-medium {
   border: 0;
+}
+
+.chat-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+}
+
+.chat-info-bg {
+  height: calc(100vh - 64px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.4px);
+  -webkit-backdrop-filter: blur(8.4px);
 }

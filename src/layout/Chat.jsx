@@ -1,14 +1,13 @@
-import { Button } from "@nextui-org/react";
 import ChatNavBar from "../components/ChatNavBar";
+import ChatUserContainer from "../page/chat/ChatUserContainer";
 
 const Chat = () => {
   return (
-    <div>
+    <div className="h-full">
       <ChatNavBar />
-      <Button variant="solid" color="primary">
-        click
-      </Button>
-      chat
+      <div className="chat-grid h-full">
+        <ChatUserContainer />
+      </div>
     </div>
   );
 };

@@ -12,7 +12,7 @@ import UserInfo from "./UserInfo";
 
 const ChatNavBar = () => {
   return (
-    <Navbar maxWidth="full" className="bg-black/60">
+    <Navbar maxWidth="full" className="bg-black/20 px-4">
       <NavbarBrand className="flex gap-2">
         <Image src="/logo.png" className="h-10" />
         <h1 className="text-2xl  font-semibold logo-font">R-Chat</h1>
