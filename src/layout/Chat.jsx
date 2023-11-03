@@ -1,15 +1,14 @@
 // import ChatNavBar from "../components/ChatNavBar";
+import { Outlet } from "react-router-dom";
 import ChatUserContainer from "../page/chat/ChatUserContainer";
-import MessageContainerNav from "../page/chat/MessageContainerNav";
 
 const Chat = () => {
   return (
-    <div className="h-full">
-      {/* <ChatNavBar /> */}
-      <div className="chat-grid h-full">
+    <div className="">
+      <div className="chat-grid">
         <ChatUserContainer />
-        <div>
-          <MessageContainerNav />
+        <div className=" relative  ">
+          <Outlet />
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ import UserInfo from "./UserInfo";
 
 const ChatNavBar = () => {
   return (
-    <div className=" py-3 px-4 space-y-3">
+    <div className=" py-3 px-3 space-y-3 ">
       <div className="flex justify-between flex-row-reverse ">
         <div className="flex items-center gap-2">
           <UserInfo />
