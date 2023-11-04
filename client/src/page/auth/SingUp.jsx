@@ -1,11 +1,22 @@
 import { Button, Input, Link } from "@nextui-org/react";
+import axios from "axios";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { serverUrl } from "../../utils";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../../Rtk/slice/userSlice";
 
-const SingUp = ({ setSelected }) => {
+const SingUp = ({ setSelected, setAuthErr }) => {
+  // react hook from
+  const { register, reset, handleSubmit } = useForm();
+
+  //use hook
+  const dispatch = useDispatch();
+
   //state
   const [isVisible, setIsVisible] = useState(false);
-  //   const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
   const [userImageErr, setUserImageErr] = useState(null);
   const [imageFile, setImageFile] = useState(null);
@@ -25,8 +36,8 @@ const SingUp = ({ setSelected }) => {
   };
 
   const changeImage = (image) => {
-    console.log("img", image);
-    const errorMessage = validateImage(image[0]);
+    setUserImageErr("");
+    const errorMessage = validateImage(image);
     console.log(errorMessage);
     if (errorMessage) {
       setImageFile(null);
@@ -35,10 +46,42 @@ const SingUp = ({ setSelected }) => {
       setImageFile(image);
     }
   };
+
+  const singUp = async (data) => {
+    setLoading(true);
+    let userPhoto;
+    if (imageFile) {
+      const formData = new FormData();
+      formData.append("image", imageFile);
+      const res = await axios.post(
+        `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_img_token}`,
+        formData
+      );
+      userPhoto = res.data.data.display_url;
+    }
+    // image uploading complete
+
+    const user = { ...data, userPhoto: userPhoto || null };
+    console.log(user);
+    axios
+      .post(`${serverUrl}/user/create-user`, user)
+      .then((res) => {
+        dispatch(updateUser(res.data));
+        setLoading(false);
+        reset();
+        setImageFile(null);
+        setAuthErr("");
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.log(err);
+        setAuthErr(err?.response?.data?.error);
+      });
+  };
   return (
-    <form className="flex flex-col gap-4 ">
+    <form onSubmit={handleSubmit(singUp)} className="flex flex-col gap-4 ">
       <Input
-        isRequired
+        {...register("name", { required: true })}
         label="Name"
         placeholder="Enter your name"
         type="text"
@@ -49,7 +92,7 @@ const SingUp = ({ setSelected }) => {
         }}
       />
       <Input
-        isRequired
+        {...register("email", { required: true })}
         label="Email"
         placeholder="Enter your email"
         type="email"
@@ -60,10 +103,10 @@ const SingUp = ({ setSelected }) => {
         }}
       />
       <Input
-        isRequired
+        {...register("password", { required: true })}
         label="Password"
         placeholder="Enter your password"
-        type="password"
+        type={!isVisible ? "password" : "text"}
         variant="underlined"
         className="text-white border-white"
         classNames={{
@@ -102,7 +145,7 @@ const SingUp = ({ setSelected }) => {
           </svg>
           <p className="mb-2 text-sm text-white dark:text-gray-400">
             <span className="font-semibold">
-              {imageFile ? imageFile[0]?.name : "Click to upload"}
+              {imageFile ? imageFile?.name : "Click to upload"}
             </span>{" "}
             User Image
           </p>
@@ -113,8 +156,7 @@ const SingUp = ({ setSelected }) => {
         accept="image/*"
         id="userImage"
         className="hidden"
-        required
-        onChange={(e) => changeImage(e.target.files)}
+        onChange={(e) => changeImage(e.target.files[0])}
       />
       {userImageErr && (
         <p className="text-red-600 font-semibold text-sm">{userImageErr}</p>
@@ -130,7 +172,7 @@ const SingUp = ({ setSelected }) => {
         </Link>
       </p>
       <div className="flex gap-2 justify-end">
-        <Button fullWidth color="primary">
+        <Button fullWidth color="primary" type="submit" isLoading={loading}>
           Sign up
         </Button>
       </div>

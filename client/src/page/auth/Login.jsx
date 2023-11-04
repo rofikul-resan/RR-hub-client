@@ -1,14 +1,42 @@
 import { Button, Input, Link } from "@nextui-org/react";
+import axios from "axios";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { serverUrl } from "../../utils";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../../Rtk/slice/userSlice";
 
-const Login = ({ setSelected }) => {
+const Login = ({ setSelected, setAuthErr }) => {
+  // react hook form
+  const { register, reset, handleSubmit } = useForm();
+
+  const dispatch = useDispatch();
+
+  // state
   const [isVisible, setIsVisible] = useState(false);
-  //   const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
+
+  const login = (data) => {
+    setLoading(true);
+    axios
+      .post(`${serverUrl}/user/login`, data)
+      .then((res) => {
+        setLoading(false);
+        dispatch(updateUser(res.data));
+        reset();
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.log(err);
+        setAuthErr(err?.response?.data?.error);
+      });
+  };
   return (
-    <form className="flex flex-col gap-4">
+    <form className="flex flex-col gap-4" onSubmit={handleSubmit(login)}>
       <Input
+        {...register("email", { required: true })}
         isRequired
         label="Email"
         placeholder="Enter your email"
@@ -20,10 +48,11 @@ const Login = ({ setSelected }) => {
         }}
       />
       <Input
+        {...register("password", { required: true })}
         isRequired
         label="Password"
         placeholder="Enter your password"
-        type="password"
+        type={!isVisible ? "password" : "text"}
         variant="underlined"
         className="text-white border-white"
         classNames={{
@@ -55,7 +84,7 @@ const Login = ({ setSelected }) => {
         </Link>
       </p>
       <div className="flex gap-2 justify-end">
-        <Button fullWidth color="primary">
+        <Button fullWidth color="primary" type="submit" isLoading={loading}>
           Login
         </Button>
       </div>

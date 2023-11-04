@@ -13,7 +13,7 @@ const router = createBrowserRouter([
         element: <MessageContainer />,
       },
     ],
-    errorElement: <Navigate to={"/"} />,
+    // errorElement: <Navigate to={"/"} />,
   },
   {
     path: "/auth",
