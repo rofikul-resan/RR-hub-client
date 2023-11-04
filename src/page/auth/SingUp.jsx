@@ -88,7 +88,7 @@ const SingUp = ({ setSelected }) => {
         {" "}
         <div className="flex flex-col items-center justify-center pt-2 mt-6 border border-gray-600 rounded-md">
           <svg
-            className="w-8 h-8 text-gray-500 dark:text-gray-400"
+            className="w-8 h-8 text-white dark:text-gray-400"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -100,7 +100,7 @@ const SingUp = ({ setSelected }) => {
               d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
             />
           </svg>
-          <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+          <p className="mb-2 text-sm text-white dark:text-gray-400">
             <span className="font-semibold">
               {imageFile ? imageFile[0]?.name : "Click to upload"}
             </span>{" "}

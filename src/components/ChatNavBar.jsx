@@ -10,9 +10,9 @@ const ChatNavBar = () => {
           <UserInfo />
           <h1>Rofikul Islam</h1>
         </div>
-        <div className="flex gap-2 ">
+        <div className="flex gap-2 items-center">
           <Image src="/logo.png" className="h-10" />
-          <h1 className="text-2xl  font-semibold logo-font">R-Chat</h1>
+          <h1 className="text-2xl  font-semibold logo-font">RChat</h1>
         </div>
       </div>
       <Input
