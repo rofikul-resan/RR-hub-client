@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const ChatUser = () => {
   return (
     <Link to={"/chat/resan"}>
-      <div className="flex gap-1 items-center px-2  hover:bg-violet-500/70 rounded-md hover:translate-x-1 duration-250 cursor-pointer border-b border-zinc-600 shadow-sm bg-black/30">
+      <div className="flex gap-1 items-center px-2  hover:bg-violet-500/70 rounded-md hover:translate-x-1 duration-250 cursor-pointer border-b border-zinc-600  mb-1 bg-black/30 shadow-inner shadow-teal-100/50  border">
         <Badge
           content=""
           color="success"

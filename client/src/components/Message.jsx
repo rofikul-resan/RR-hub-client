@@ -1,10 +1,12 @@
+import { Avatar } from "@nextui-org/react";
 import { AiOutlineCheck } from "react-icons/ai";
+import { nameShorter } from "../utils";
 
 const Message = () => {
   return (
     <>
       <div className="flex justify-end gap-2">
-        <div className=" py-1 px-3 rounded-md bg-violet-700/40 backdrop-blur-sm max-w-xl">
+        <div className=" py-1 px-3 rounded-md bg-violet-700/40 backdrop-blur-sm max-w-xl shadow-inner shadow-teal-100/50 border-white/40 border">
           <h3 className="capitalize font-semibold  text-orange-300">resan</h3>
           <p className="text-sm"> hi , resan how are you?</p>
         </div>
@@ -13,7 +15,16 @@ const Message = () => {
         </div>
       </div>
       <div className="flex justify-start max-w-2xl gap-2">
-        <div className=" py-1 px-3 rounded-md backdrop-blur-2xl max-w-xl">
+        <Avatar
+          isBordered
+          radius="full"
+          className="transition-transform m-2 mt-auto -z-10"
+          color="secondary"
+          name={nameShorter("Jason Hughes")}
+          size="sm"
+          src=""
+        />
+        <div className=" py-1 px-3 rounded-md backdrop-blur-2xl max-w-xl shadow-inner shadow-teal-100/50 border-white/40 border">
           <h3 className="capitalize font-semibold  text-orange-300  mb-2">
             resan
           </h3>
@@ -27,9 +38,9 @@ const Message = () => {
             Preview Code With Label Preview Code
           </p>
         </div>
-        <div className="rounded-full h-3 w-3 bg-orange-700 flex items-center justify-center mt-auto ">
+        {/* <div className="rounded-full h-3 w-3 bg-orange-700 flex items-center justify-center mt-auto ">
           <AiOutlineCheck className="text-[10px]" />
-        </div>
+        </div> */}
       </div>
     </>
   );
