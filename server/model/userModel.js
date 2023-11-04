@@ -15,13 +15,17 @@ const userSchema = new mongoose.Schema(
     },
     userPhoto: {
       type: String,
-      required: true,
+      default: null,
     },
     password: {
       type: String,
       required: true,
     },
     lastActive: { type: Date, default: Date.now },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
     friend: {
       type: [
         {
