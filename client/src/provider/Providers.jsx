@@ -5,7 +5,7 @@ import { store } from "../Rtk/store";
 const Providers = ({ children }) => {
   return (
     <Provider store={store}>
-      <NextUIProvider>{children}</NextUIProvider>;
+      <NextUIProvider>{children}</NextUIProvider>
     </Provider>
   );
 };

@@ -8,8 +8,11 @@ import {
 } from "@nextui-org/react";
 import { nameShorter } from "../utils";
 import { AiOutlineLogout } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { logout } from "../Rtk/slice/userSlice";
 
-const UserInfo = () => {
+const UserInfo = ({ user }) => {
+  const dispatch = useDispatch();
   return (
     <Dropdown placement="bottom-start" className="mr-2 bg-black/80 text-white">
       <DropdownTrigger>
@@ -18,9 +21,9 @@ const UserInfo = () => {
           as="button"
           className="transition-transform  mr-2 w-7 h-7"
           color="secondary"
-          name={nameShorter("Jason Hughes")}
+          name={nameShorter(user?.name)}
           size="sm"
-          src=""
+          src={user?.userPhoto || ""}
         />
       </DropdownTrigger>
       <DropdownMenu aria-label="Profile Actions">
@@ -35,6 +38,7 @@ const UserInfo = () => {
           color="primary"
           className="text-center"
           as={Button}
+          onClick={() => dispatch(logout())}
         >
           <div className="flex gap-2 items-center justify-center ">
             <p> Log Out</p>

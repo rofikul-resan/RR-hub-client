@@ -1,14 +1,16 @@
 import { Image, Input } from "@nextui-org/react";
 import { AiOutlineSearch } from "react-icons/ai";
 import UserInfo from "./UserInfo";
+import { useSelector } from "react-redux";
 
 const ChatNavBar = () => {
+  const user = useSelector((s) => s.user);
   return (
     <div className=" py-3 px-3 space-y-3 ">
-      <div className="flex justify-between flex-row-reverse ">
+      <div className="flex justify-between flex-col-reverse gap-3 md:flex-row-reverse ">
         <div className="flex items-center gap-2">
-          <UserInfo />
-          <h1>Rofikul Islam</h1>
+          <UserInfo user={user} />
+          <h1>{user.name.split(" ").slice(0, 2).join(" ")}</h1>
         </div>
         <div className="flex gap-2 items-center">
           <Image src="/logo.png" className="h-10" />
