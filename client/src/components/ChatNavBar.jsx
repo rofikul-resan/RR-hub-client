@@ -31,7 +31,7 @@ const ChatNavBar = () => {
       setUsers([]);
       setSearchKey("");
       console.log(res.data);
-      return navigate("/chat/" + res.data.messageId);
+      return navigate(`/chat/${res.data.messageId}`);
     });
     console.log(data);
   };

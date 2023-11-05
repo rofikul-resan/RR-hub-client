@@ -3,7 +3,8 @@ import { nameShorter } from "../../utils";
 import { AiOutlinePhone, AiOutlineVideoCameraAdd } from "react-icons/ai";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
-const MessageContainerNav = () => {
+const MessageContainerNav = ({ name, userImg }) => {
+  console.log(name);
   return (
     <Navbar className="bg-violet-600/30 backdrop-blur-md ">
       <NavbarContent>
@@ -20,13 +21,13 @@ const MessageContainerNav = () => {
             radius="full"
             className="transition-transform m-2"
             color="success"
-            name={nameShorter("Jason Hughes")}
+            name={nameShorter(name)}
             size="sm"
-            src=""
+            src={userImg}
           />
         </Badge>
         <div className="flex flex-col">
-          <h1 className="font-semibold "> Rofikul islam</h1>
+          <h1 className="font-semibold capitalize "> {name}</h1>
           <p className="text-xs">Active Now</p>
         </div>
       </NavbarContent>
