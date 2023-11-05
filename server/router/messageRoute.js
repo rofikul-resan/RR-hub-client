@@ -9,19 +9,23 @@ msgRoute.post("/msg", async (req, res) => {
   const user2 = members[0];
   try {
     const isExistMessage = await Message.findOne({
-      members: {
-        $all: [{ userId: user1.userId }, { userId: user2.userId }],
-      },
+      $and: [{ "members._id": user1._id }, { "members._id": user1._id }],
     });
     console.log(isExistMessage);
     if (!isExistMessage) {
       const message = new Message();
-      //   message.members.push([...members]);
-      console.log([...members]);
-      const result = await message.save();
-      res.send(result);
+      const createMsg = await message.save();
+      const result = await Message.updateOne(
+        { _id: createMsg._id },
+        {
+          $push: {
+            members: { $each: [user1, user2] },
+          },
+        }
+      );
+      res.send({ messageId: createMsg._id });
     } else {
-      res.send(isExistMessage);
+      res.send({ messageId: isExistMessage._id });
     }
     res.end();
   } catch (err) {

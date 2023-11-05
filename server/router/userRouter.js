@@ -37,7 +37,8 @@ userRoute.post("/create-user", async (req, res) => {
       userData.password = hashPass;
       const user = new User(userData);
       const result = await user.save();
-      const { name, email, lastActive, userPhoto, friend, isActive } = result;
+      const { name, email, lastActive, userPhoto, friend, isActive, _id } =
+        result;
       res.json({
         name,
         email,
@@ -45,6 +46,7 @@ userRoute.post("/create-user", async (req, res) => {
         userPhoto,
         friend,
         isActive,
+        _id,
       });
     }
   } catch (err) {

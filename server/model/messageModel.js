@@ -19,7 +19,7 @@ const messageSchema = new mongoose.Schema(
     members: {
       type: [
         {
-          userId: String,
+          _id: String,
           name: String,
           userPhoto: String,
           roll: {
