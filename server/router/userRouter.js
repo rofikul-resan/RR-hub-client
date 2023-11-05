@@ -3,6 +3,28 @@ const userRoute = express.Router();
 const bcrypt = require("bcryptjs");
 const User = require("../model/userModel");
 
+userRoute.get("/search", async (req, res) => {
+  const searchKye = req.query.key;
+  try {
+    if (searchKye) {
+      console.log(searchKye);
+      const result = await User.find({
+        $or: [
+          { name: { $regex: searchKye, $options: "i" } },
+          { email: { $regex: searchKye, $options: "i" } },
+        ],
+      }).select("name userPhoto");
+      console.log(result);
+      res.send(result);
+    } else {
+      res.end();
+    }
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
+});
+
 userRoute.post("/create-user", async (req, res) => {
   try {
     const data = req.body;

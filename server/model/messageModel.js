@@ -5,42 +5,51 @@ const messageSchema = new mongoose.Schema(
     name: {
       type: String,
       trim: true,
+      default: "",
     },
-    groupeMessage: Boolean,
+    groupeMessage: {
+      type: Boolean,
+      default: false,
+    },
     messagePhoto: {
       type: String,
+      default: null,
     },
 
     members: {
       type: [
         {
-          userId: mongoose.Schema.Types.ObjectId,
+          userId: String,
           name: String,
           userPhoto: String,
           roll: {
+            type: String,
             enum: ["member", "admin"],
             default: "member",
           },
-          ref: "User",
         },
       ],
       default: [],
     },
     messages: {
-      type: {
-        author: {
-          name: String,
-          userPhoto: String,
+      type: [
+        {
+          author: {
+            name: String,
+            userPhoto: String,
+          },
+          msg: String,
+          time: {
+            type: Date,
+            default: Date.now,
+          },
         },
-        msg: String,
-        time: {
-          type: Date,
-          default: Date.now,
-        },
-      },
+      ],
+      default: [],
     },
   },
   { timestamps: true }
 );
 
-export const Message = mongoose.model("Message", messageSchema);
+const Message = mongoose.model("Message", messageSchema);
+module.exports = Message;
