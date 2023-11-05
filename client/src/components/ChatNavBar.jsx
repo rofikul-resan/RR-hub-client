@@ -5,21 +5,37 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { nameShorter, serverUrl } from "../utils";
+import { Link, useNavigate } from "react-router-dom";
 
 const ChatNavBar = () => {
+  const navigate = useNavigate();
+  const user = useSelector((s) => s.user);
   const [searchKey, setSearchKey] = useState("");
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     setTimeout(() => {
       axios.get(`${serverUrl}/user/search?key=${searchKey}`).then((res) => {
-        console.log(res.data);
-        setUsers(res.data);
+        const userData = res.data;
+        return setUsers(userData);
       });
     }, 500);
-  }, [searchKey]);
+  }, [searchKey, user]);
 
-  const user = useSelector((s) => s.user);
+  const goToChat = (targetUser) => {
+    const { _id, name, userPhoto } = user;
+    const mainUser = { _id, name, userPhoto };
+    const data = [mainUser, targetUser];
+    console.log(data);
+    axios.post(`${serverUrl}/messages/msg`, data).then((res) => {
+      setUsers([]);
+      setSearchKey("");
+      console.log(res.data);
+      return navigate("/chat/" + res.data.messageId);
+    });
+    console.log(data);
+  };
+
   return (
     <div className=" py-3 px-3 space-y-3 ">
       <div className="flex justify-between flex-col-reverse gap-3 md:flex-row-reverse ">
@@ -27,10 +43,10 @@ const ChatNavBar = () => {
           <UserInfo user={user} />
           <h1>{user.name.split(" ").slice(0, 2).join(" ")}</h1>
         </div>
-        <div className="flex gap-2 items-center">
+        <Link to={"/"} className="flex gap-2 items-center">
           <Image src="/logo.png" className="h-10" />
           <h1 className="text-2xl  font-semibold logo-font">RChat</h1>
-        </div>
+        </Link>
       </div>
       <Input
         classNames={{
@@ -47,6 +63,7 @@ const ChatNavBar = () => {
         variant="bordered"
         placeholder="Search User..."
         size="sm"
+        value={searchKey}
         startContent={<AiOutlineSearch className="text-white" />}
         type="search"
         onChange={(e) => setSearchKey(e.target.value)}
@@ -56,8 +73,9 @@ const ChatNavBar = () => {
           <div className=" font-semibold absolute top-0 z-20 bg-black/95 w-full p-2 pb-4 rounded-md  max-h-52 h-fit overflow-scroll ">
             {users.map((user) => (
               <div
+                onClick={() => goToChat(user)}
                 key={user._id}
-                className="flex gap-3 text-xl items-center border-b pb-1  hover:translate-x-1 duration-150 cursor-pointer"
+                className={`flex gap-3 text-xl items-center border-b pb-1  hover:translate-x-1 duration-150 cursor-pointer `}
               >
                 <Avatar
                   name={nameShorter(user?.name)}
