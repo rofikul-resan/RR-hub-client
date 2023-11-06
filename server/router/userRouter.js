@@ -2,8 +2,7 @@ const express = require("express");
 const userRoute = express.Router();
 const bcrypt = require("bcryptjs");
 const User = require("../model/userModel");
-const createJwtToken = require("../middleware/Jwt");
-const verifyJWT = require("../middleware/Jwt");
+const { verifyJWT } = require("../middleware/Jwt");
 
 userRoute.get("/logged-user", verifyJWT, async (req, res) => {
   try {

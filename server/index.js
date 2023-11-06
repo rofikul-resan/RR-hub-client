@@ -11,7 +11,7 @@ const { Server } = require("socket.io");
 const cookieParser = require("cookie-parser");
 
 const User = require("./model/userModel");
-const createJwtToken = require("./middleware/Jwt");
+const { createJwtToken } = require("./middleware/Jwt");
 
 //middleware
 app.use(
@@ -82,8 +82,8 @@ app.get("/", (req, res) => {
 
 app.post("/jwt", async (req, res) => {
   const data = req.body;
+  console.log(data);
   const token = await createJwtToken(data, process.env.JWT_SECRET);
-
   console.log(token);
   res.send({ token });
 });
