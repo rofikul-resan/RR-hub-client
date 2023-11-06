@@ -5,7 +5,8 @@ const msgSlice = createSlice({
   initialState: {},
   reducers: {
     setMessageState: (state, action) => {
-      return (state = action.payload);
+      const msgState = action.payload;
+      return (state = msgState);
     },
     sendMsg: (state, action) => {
       state.messages.push(action.payload);

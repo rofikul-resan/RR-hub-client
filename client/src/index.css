@@ -58,5 +58,5 @@ html {
 
 .message-container-h {
 
-  height: calc(100vh - 140px);
+  height: calc(100vh - 100px);
 }

@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 
 const ChatUser = ({ chat }) => {
   const user = useSelector((state) => state.user);
+  const lastMsg = useSelector((state) => state.message.lastMsg);
   const otherUser = chat?.members?.filter((ur) => user._id !== ur._id);
   return (
     <Link to={`/chat/${chat._id}`}>
@@ -28,7 +29,7 @@ const ChatUser = ({ chat }) => {
         </Badge>
         <div className="flex flex-col">
           <h1 className="font-semibold "> {otherUser[0]?.name}</h1>
-          <p className="text-xs">hi</p>
+          <p className="text-xs">{chat?.lastMsg?.msg}</p>
         </div>
       </div>
     </Link>

@@ -10,10 +10,14 @@ const ChatUserContainer = () => {
   const [userChat, setUserChat] = useState([]);
 
   useEffect(() => {
-    axios.get(`${serverUrl}/messages/user?userId=${user._id}`).then((res) => {
-      console.log("get", res.data);
-      setUserChat(res.data);
-    });
+    const refresh = setInterval(() => {
+      axios.get(`${serverUrl}/messages/user?userId=${user._id}`).then((res) => {
+        console.log("get", res.data);
+        setUserChat(res.data);
+      });
+    }, 2000);
+
+    return () => clearInterval(refresh);
   }, [user._id]);
   return (
     <div>

@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setMessageState } from "../../Rtk/slice/messageSlice";
 import axios from "axios";
 import { serverUrl } from "../../utils";
-import { Progress } from "@nextui-org/react";
 
 const MessageContainer = () => {
   const [loading, setLoading] = useState(true);
@@ -20,10 +19,10 @@ const MessageContainer = () => {
   const messagesData = useSelector((state) => state.message);
   useEffect(() => {
     messageBox.current?.scrollTo({
-      top: messageBox.current?.scrollHeight + 100,
+      top: messageBox.current?.scrollHeight + 110,
       behavior: "smooth",
     });
-  }, [id]);
+  }, []);
 
   const scrollToBottom = () => {
     messageBox.current.scrollTo({
@@ -40,9 +39,11 @@ const MessageContainer = () => {
     });
   }, [dispatch, id]);
 
-  // useEffect(() => {
-  //   setOriginalMsg(messagesData?.messages);
-  // }, [messagesData?.messages]);
+  useEffect(() => {
+    if (messagesData?.messages) {
+      setOriginalMsg(messagesData?.messages);
+    }
+  }, [messagesData]);
 
   const msgs = [...originalMsg].reverse();
   const otherUser = messagesData?.members?.filter(
@@ -63,7 +64,7 @@ const MessageContainer = () => {
               ref={messageBox}
               className="message-container-h py-6   px-3  overflow-scroll"
             >
-              <div className="flex gap-2 flex-col-reverse   w-full  pb-12 ">
+              <div className="flex gap-2 flex-col-reverse   w-full  pb-10 ">
                 {msgs.map((msg, i) => (
                   <Message key={i} msg={msg} />
                 ))}
