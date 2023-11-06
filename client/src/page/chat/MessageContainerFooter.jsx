@@ -12,6 +12,7 @@ const MessageContainerFooter = ({ id, scrollToBottom }) => {
   const user = useSelector((st) => st.user);
   const dispatch = useDispatch();
   const { register, reset, handleSubmit } = useForm();
+  const date = new Date();
 
   const sendMessage = (data) => {
     const msgData = {
@@ -19,6 +20,7 @@ const MessageContainerFooter = ({ id, scrollToBottom }) => {
         name: user?.name,
         userPhoto: user?.userPhoto,
       },
+      time: date.getTime(),
       ...data,
     };
     dispatch(sendMsg(msgData));

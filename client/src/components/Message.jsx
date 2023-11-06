@@ -31,7 +31,7 @@ const Message = ({ msg }) => {
                 size="sm"
                 src={msg?.author?.userPhoto}
               />
-              <div className=" py-1 px-3 rounded-md backdrop-blur-2xl max-w-xl shadow-inner shadow-teal-100/50 border-white/40 border">
+              <div className=" py-1 px-3 rounded-md backdrop-blur-2xl max-w-xl shadow-inner shadow-teal-100/50 border-white/40 border w-60">
                 <h3 className="capitalize font-semibold  text-orange-300  mb-2">
                   {msg?.author?.name}
                 </h3>

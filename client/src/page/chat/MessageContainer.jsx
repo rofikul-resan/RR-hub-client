@@ -51,6 +51,7 @@ const MessageContainer = () => {
       socket.emit("r-chat", { userId: messagesData?._id });
       socket.on("msg", (msgData) => {
         dispatch(sendMsg(msgData));
+        scrollToBottom();
       });
     }
 

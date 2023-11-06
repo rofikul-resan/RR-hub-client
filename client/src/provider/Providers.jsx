@@ -5,7 +5,9 @@ import { store } from "../Rtk/store";
 const Providers = ({ children }) => {
   return (
     <Provider store={store}>
-      <NextUIProvider>{children}</NextUIProvider>
+      <div className="h-full">
+        <NextUIProvider className="h-full">{children}</NextUIProvider>
+      </div>
     </Provider>
   );
 };

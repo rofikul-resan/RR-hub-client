@@ -3,6 +3,7 @@ import Chat from "../layout/Chat";
 import MessageContainer from "../page/chat/MessageContainer";
 import AuthLayout from "../layout/AuthLayout";
 import PrivetRoute from "./PrivetRoute";
+import DefaultChatBox from "../components/DefaultChatBox";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
       </PrivetRoute>
     ),
     children: [
+      {
+        path: "/",
+        element: <DefaultChatBox />,
+      },
       {
         path: "/chat/:id",
         element: <MessageContainer />,

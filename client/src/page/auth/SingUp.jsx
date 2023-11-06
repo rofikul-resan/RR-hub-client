@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { serverUrl } from "../../utils";
+import { getToken, serverUrl } from "../../utils";
 import { useDispatch } from "react-redux";
 import { updateUser } from "../../Rtk/slice/userSlice";
 
@@ -66,6 +66,8 @@ const SingUp = ({ setSelected, setAuthErr }) => {
     axios
       .post(`${serverUrl}/user/create-user`, user)
       .then((res) => {
+        const token = getToken({ email: data.email });
+        console.log(token);
         dispatch(updateUser(res.data));
         setLoading(false);
         reset();
