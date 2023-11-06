@@ -7,14 +7,12 @@ userRoute.get("/search", async (req, res) => {
   const searchKye = req.query.key;
   try {
     if (searchKye) {
-      console.log(searchKye);
       const result = await User.find({
         $or: [
           { name: { $regex: searchKye, $options: "i" } },
           { email: { $regex: searchKye, $options: "i" } },
         ],
       }).select("name userPhoto");
-      console.log(result);
       res.send(result);
     } else {
       res.end();
@@ -61,7 +59,6 @@ userRoute.post("/login", async (req, res) => {
     const isExist = await User.findOne({ email: userData.email }).select(
       "email password"
     );
-    console.log(isExist);
 
     if (!isExist) {
       return res.status(404).send({ error: "Incerate email or password" });

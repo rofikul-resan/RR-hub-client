@@ -11,7 +11,6 @@ msgRoute.post("/msg", async (req, res) => {
     const isExistMessage = await Message.findOne({
       $and: [{ "members._id": user1._id }, { "members._id": user2._id }],
     });
-    console.log(isExistMessage);
     if (!isExistMessage) {
       const message = new Message();
       const createMsg = await message.save();
