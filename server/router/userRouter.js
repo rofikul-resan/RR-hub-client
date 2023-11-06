@@ -2,6 +2,18 @@ const express = require("express");
 const userRoute = express.Router();
 const bcrypt = require("bcryptjs");
 const User = require("../model/userModel");
+const createJwtToken = require("../middleware/Jwt");
+const verifyJWT = require("../middleware/Jwt");
+
+userRoute.get("/logged-user", verifyJWT, async (req, res) => {
+  try {
+    const email = req.decode.email;
+    const user = await User.findOne({ email: email }).select({ password: 0 });
+    res.send(user);
+  } catch {
+    console.log("err");
+  }
+});
 
 userRoute.get("/search", async (req, res) => {
   const searchKye = req.query.key;
@@ -68,7 +80,6 @@ userRoute.post("/login", async (req, res) => {
     if (!isValid) {
       return res.status(404).send({ error: "Incerate email or password" });
     }
-
     const result = await User.findById(isExist._id).select({ password: 0 });
 
     res.json(result);
