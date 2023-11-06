@@ -4,9 +4,9 @@ import MessageContainerFooter from "./MessageContainerFooter";
 import MessageContainerNav from "./MessageContainerNav";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setMessageState } from "../../Rtk/slice/messageSlice";
+import { sendMsg, setMessageState } from "../../Rtk/slice/messageSlice";
 import axios from "axios";
-import { serverUrl } from "../../utils";
+import { serverUrl, socket } from "../../utils";
 
 const MessageContainer = () => {
   const [loading, setLoading] = useState(true);
@@ -44,6 +44,18 @@ const MessageContainer = () => {
       setOriginalMsg(messagesData?.messages);
     }
   }, [messagesData]);
+
+  // use socket
+  useEffect(() => {
+    if (messagesData?._id) {
+      socket.emit("r-chat", { userId: messagesData?._id });
+      socket.on("msg", (msgData) => {
+        dispatch(sendMsg(msgData));
+      });
+    }
+
+    return () => socket.off();
+  }, [dispatch, messagesData?._id]);
 
   const msgs = [...originalMsg].reverse();
   const otherUser = messagesData?.members?.filter(

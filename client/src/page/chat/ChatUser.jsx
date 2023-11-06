@@ -1,11 +1,11 @@
 import { Avatar, Badge } from "@nextui-org/react";
-import { nameShorter } from "../../utils";
+import { nameShorter, socket } from "../../utils";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const ChatUser = ({ chat }) => {
   const user = useSelector((state) => state.user);
-  const lastMsg = useSelector((state) => state.message.lastMsg);
+
   const otherUser = chat?.members?.filter((ur) => user._id !== ur._id);
   return (
     <Link to={`/chat/${chat._id}`}>

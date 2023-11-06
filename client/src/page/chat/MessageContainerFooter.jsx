@@ -6,7 +6,7 @@ import { MdOutlineAddPhotoAlternate } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { sendMsg } from "../../Rtk/slice/messageSlice";
 import axios from "axios";
-import { serverUrl } from "../../utils";
+import { serverUrl, socket } from "../../utils";
 
 const MessageContainerFooter = ({ id, scrollToBottom }) => {
   const user = useSelector((st) => st.user);
@@ -26,6 +26,9 @@ const MessageContainerFooter = ({ id, scrollToBottom }) => {
     scrollToBottom();
     axios.put(`${serverUrl}/messages/${id}`, msgData).then((res) => {
       console.log(res.data);
+      if (res.data.modifiedCount > 0) {
+        socket.emit("new-msg", msgData, id);
+      }
     });
   };
 
