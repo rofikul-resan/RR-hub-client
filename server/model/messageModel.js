@@ -47,6 +47,17 @@ const messageSchema = new mongoose.Schema(
       ],
       default: [],
     },
+    lastMsg: {
+      author: {
+        name: String,
+        userPhoto: String,
+      },
+      msg: String,
+      time: {
+        type: Date,
+        default: Date.now,
+      },
+    },
   },
   { timestamps: true }
 );

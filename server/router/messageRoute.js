@@ -50,7 +50,9 @@ msgRoute.get("/user", async (req, res) => {
   try {
     const userMessage = await Message.find({
       "members._id": userId,
-    }).select({ messages: 0 });
+    })
+      .select({ messages: 0 })
+      .sort({ updatedAt: -1 });
     res.send(userMessage);
   } catch (err) {
     console.log(err);
@@ -66,6 +68,7 @@ msgRoute.put("/:id", async (req, res) => {
     { _id: id },
     {
       $push: { messages: msg },
+      $set: { lastMsg: msg },
     }
   );
   res.send(result);
