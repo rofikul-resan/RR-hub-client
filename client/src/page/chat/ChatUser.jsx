@@ -1,5 +1,5 @@
 import { Avatar, Badge } from "@nextui-org/react";
-import { nameShorter, socket } from "../../utils";
+import { nameShorter } from "../../utils";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 

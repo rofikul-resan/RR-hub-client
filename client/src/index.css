@@ -44,9 +44,10 @@ html {
 }
 
 .chat-grid {
-  display: grid;
   grid-template-columns: 1fr 3fr;
 }
+
+
 
 .chat-info-bg {
   min-height: 100vh;

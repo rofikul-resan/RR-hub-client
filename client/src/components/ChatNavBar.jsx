@@ -37,14 +37,14 @@ const ChatNavBar = () => {
   };
 
   return (
-    <div className=" py-3 px-3 space-y-3 ">
-      <div className="flex justify-between flex-col-reverse gap-3 md:flex-row-reverse ">
+    <div className=" py-3 px-3 space-y-3  ">
+      <div className="flex justify-between flex-col-reverse gap-3 md:flex-row-reverse w-10/12 pl-2 my-2 ml-auto md:w-full">
         <div className="flex items-center gap-2">
           <UserInfo user={user} />
           <h1>{user.name.split(" ").slice(0, 2).join(" ")}</h1>
         </div>
-        <Link to={"/"} className="flex gap-2 items-center">
-          <Image src="/logo.png" className="h-10" />
+        <Link to={"/"} className="md:flex gap-2 items-center hidden  ">
+          <Image src="/logo.png" className="h-10 " />
           <h1 className="text-2xl  font-semibold logo-font">RChat</h1>
         </Link>
       </div>

@@ -74,7 +74,7 @@ const MessageContainer = () => {
             )}
             <div
               ref={messageBox}
-              className="message-container-h py-6   px-3  overflow-scroll"
+              className="message-container-h py-6   px-3  overflow-scroll "
             >
               <div className="flex gap-2 flex-col-reverse   w-full  pb-10 ">
                 {msgs.map((msg, i) => (

@@ -5,7 +5,7 @@ import axios from "axios";
 import { serverUrl } from "../../utils";
 import { useSelector } from "react-redux";
 
-const ChatUserContainer = () => {
+const ChatUserContainer = ({ className }) => {
   const user = useSelector((state) => state.user);
   const [userChat, setUserChat] = useState([]);
 
@@ -20,7 +20,7 @@ const ChatUserContainer = () => {
     return () => clearInterval(refresh);
   }, [user._id]);
   return (
-    <div>
+    <div className={className}>
       <div className="chat-info-bg w-full bg-black/25  h-full shadow-inner shadow-white ">
         <ChatNavBar />
         <div className="space-y-1 py-6 px-3  overflow-scroll h-[500px]">

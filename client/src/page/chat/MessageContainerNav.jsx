@@ -6,7 +6,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 const MessageContainerNav = ({ name, userImg }) => {
   console.log(name);
   return (
-    <Navbar className="bg-violet-600/30 backdrop-blur-md ">
+    <Navbar className="bg-violet-600/30 backdrop-blur-md pl-7 ">
       <NavbarContent>
         <Badge
           content=""
