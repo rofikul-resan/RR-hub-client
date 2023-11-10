@@ -1,7 +1,8 @@
 import axios from "axios";
 import { io } from "socket.io-client";
-export const serverUrl = "https://api-r-hub.vercel.app";
-export const socket = io(serverUrl, { autoConnect: true });
+// export const serverUrl = "https://api-r-hub.vercel.app";
+export const serverUrl = "http://localhost:5000";
+export const socket = io(serverUrl, { transports: ["websocket"] });
 
 export const nameShorter = (name) => {
   const nameArr = name.split(" ");

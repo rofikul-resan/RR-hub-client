@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 
 const Message = ({ msg }) => {
   const user = useSelector((st) => st.user);
-  console.log(msg);
   return (
     <>
       {msg && (

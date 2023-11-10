@@ -18,17 +18,11 @@ const MessageContainer = () => {
 
   const messagesData = useSelector((state) => state.message);
   useEffect(() => {
-    messageBox.current?.scrollTo({
-      top: messageBox.current?.scrollHeight + 110,
-      behavior: "smooth",
-    });
-  }, []);
+    messageBox.current?.scrollTo(0, messageBox.current.scrollHeight);
+  }, [id]);
 
   const scrollToBottom = () => {
-    messageBox.current.scrollTo({
-      top: messageBox.current.scrollHeight + 100,
-      behavior: "smooth",
-    });
+    messageBox.current.scrollTo(0, messageBox.current.scrollHeight);
   };
 
   useEffect(() => {
