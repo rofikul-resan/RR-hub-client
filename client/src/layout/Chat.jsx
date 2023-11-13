@@ -26,7 +26,7 @@ const Chat = () => {
   }, [user._id, dispatch]);
 
   return (
-    <div onClick={() => setIsShow(true)} className="h-full">
+    <div className="h-full">
       <div className="absolute z-[101] top-3 left-1 md:hidden ">
         <Button
           isIconOnly

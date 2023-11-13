@@ -27,6 +27,7 @@ const UserInfo = ({ user }) => {
         />
       </DropdownTrigger>
       <DropdownMenu aria-label="Profile Actions">
+        <DropdownItem key="settings">{user?.email}</DropdownItem>
         <DropdownItem key="settings">My Settings</DropdownItem>
         <DropdownItem key="team_settings">Team Settings</DropdownItem>
         <DropdownItem key="analytics">Analytics</DropdownItem>

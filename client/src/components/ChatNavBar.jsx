@@ -23,9 +23,8 @@ const ChatNavBar = () => {
   }, [searchKey, user]);
 
   const goToChat = (targetUser) => {
-    const { _id, name, userPhoto } = user;
-    const mainUser = { _id, name, userPhoto };
-    const data = [mainUser, targetUser];
+    const { _id } = user;
+    const data = [_id, targetUser._id];
     console.log(data);
     axios.post(`${serverUrl}/messages/msg`, data).then((res) => {
       setUsers([]);
@@ -78,7 +77,7 @@ const ChatNavBar = () => {
                 className={`flex gap-3 text-xl items-center border-b pb-1  hover:translate-x-1 duration-150 cursor-pointer `}
               >
                 <Avatar
-                  name={nameShorter(user?.name)}
+                  name={nameShorter(user?.name || "")}
                   color="secondary"
                   className="w-5 h-5 m-1 rounded-sm"
                   src={user?.userPhoto}

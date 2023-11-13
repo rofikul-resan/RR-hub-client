@@ -21,7 +21,7 @@ const MessageContainerNav = ({ name, userImg }) => {
             radius="full"
             className="transition-transform m-2"
             color="success"
-            name={nameShorter(name)}
+            name={nameShorter(name || "")}
             size="sm"
             src={userImg}
           />
