@@ -19,9 +19,10 @@ const messageSchema = new mongoose.Schema(
     members: {
       type: [
         {
-          _id: String,
-          name: String,
-          userPhoto: String,
+          user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+          },
           roll: {
             type: String,
             enum: ["member", "admin"],

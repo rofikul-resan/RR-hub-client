@@ -7,21 +7,17 @@ msgRoute.post("/msg", async (req, res) => {
   const members = req.body;
   const user1 = members[0];
   const user2 = members[1];
+  console.log(members);
   try {
     const isExistMessage = await Message.findOne({
-      $and: [{ "members._id": user1._id }, { "members._id": user2._id }],
+      $and: [{ "members.user": user1 }, { "members.user": user2 }],
     });
+    console.log(isExistMessage);
     if (!isExistMessage) {
-      const message = new Message();
+      const message = new Message({
+        members: [{ user: user1 }, { user: user2 }],
+      });
       const createMsg = await message.save();
-      const result = await Message.updateOne(
-        { _id: createMsg._id },
-        {
-          $push: {
-            members: { $each: [user1, user2] },
-          },
-        }
-      );
       res.send({ messageId: createMsg._id });
     } else {
       res.send({ messageId: isExistMessage._id });
@@ -48,10 +44,12 @@ msgRoute.get("/user", async (req, res) => {
   const userId = req.query.userId;
   try {
     const userMessage = await Message.find({
-      "members._id": userId,
+      "members.user": userId,
     })
+      .populate("members.user", "name  email  isActive lastActive userPhoto")
       .select({ messages: 0 })
       .sort({ updatedAt: -1 });
+    console.log(userMessage);
     res.send(userMessage);
   } catch (err) {
     console.log(err);
@@ -69,7 +67,7 @@ msgRoute.put("/:id", async (req, res) => {
       $push: { messages: msg },
       $set: { lastMsg: msg },
     }
-  );
+  ).populate("members.user", "name  email  isActive lastActive userPhoto");
   res.send(result);
 });
 

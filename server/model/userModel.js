@@ -24,16 +24,16 @@ const userSchema = new mongoose.Schema(
     lastActive: { type: Date, default: Date.now },
     isActive: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     friend: {
       type: [
         {
-          userId: mongoose.Schema.Types.ObjectId,
-          name: String,
-          userPhoto: String,
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
         },
       ],
+
       default: [],
     },
   },
