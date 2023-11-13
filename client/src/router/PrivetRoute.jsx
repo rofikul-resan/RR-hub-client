@@ -7,7 +7,7 @@ import { serverUrl } from "../utils";
 import { updateUser } from "../Rtk/slice/userSlice";
 
 const PrivetRoute = ({ children }) => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const location = useLocation();
   const dispatch = useDispatch();
   const user = useSelector((st) => st.user);
@@ -27,6 +27,7 @@ const PrivetRoute = ({ children }) => {
           console.log("prv", res.data);
         })
         .catch((err) => {
+          localStorage.removeItem("auth-token");
           setLoading(false);
           console.log(err);
         });
