@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { sendMsg, setMessageState } from "../../Rtk/slice/messageSlice";
 import axios from "axios";
 import { serverUrl, socket } from "../../utils";
-import { useGetChatUserQuery } from "../../Rtk/query/messageApi";
 import useChatLIst from "../../hook/useChatLIst";
 
 const MessageContainer = () => {
@@ -58,19 +57,14 @@ const MessageContainer = () => {
 
   const msgs = [...originalMsg].reverse();
   const otherUser = messagesData?.members?.filter(
-    (mbr) => mbr._id !== user?._id
+    (mbr) => mbr?.user?._id !== user?._id
   );
   return (
     <>
       <>
         {loading || (
           <div>
-            {otherUser && (
-              <MessageContainerNav
-                name={otherUser[0]?.name}
-                userImg={otherUser[0].userPhoto}
-              />
-            )}
+            {otherUser && <MessageContainerNav userInfo={otherUser[0]} />}
             <div
               ref={messageBox}
               className="message-container-h py-6   px-3  overflow-scroll "

@@ -2,13 +2,10 @@ import { useEffect, useState } from "react";
 import ChatNavBar from "../../components/ChatNavBar";
 import ChatUser from "./ChatUser";
 
-import { useSelector } from "react-redux";
-import { useGetChatUserQuery } from "../../Rtk/query/messageApi";
 import { Spinner } from "@nextui-org/react";
 import useChatLIst from "../../hook/useChatLIst";
 
 const ChatUserContainer = ({ className }) => {
-  const user = useSelector((state) => state.user);
   const [userChat, setUserChat] = useState([]);
 
   const { data, isLoading } = useChatLIst();

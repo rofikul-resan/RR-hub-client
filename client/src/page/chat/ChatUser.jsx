@@ -8,7 +8,6 @@ const ChatUser = ({ chat }) => {
   const { pathname } = useLocation();
 
   const otherUser = chat?.members?.filter((ur) => user._id !== ur?.user?._id);
-  console.log(chat);
   return (
     <Link to={`/chat/${chat._id}`}>
       <div
