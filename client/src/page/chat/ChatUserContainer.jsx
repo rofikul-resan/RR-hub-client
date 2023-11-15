@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
 import ChatNavBar from "../../components/ChatNavBar";
 import ChatUser from "./ChatUser";
-import axios from "axios";
-import { serverUrl } from "../../utils";
+
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
 import { useGetChatUserQuery } from "../../Rtk/query/messageApi";
 import { Spinner } from "@nextui-org/react";
+import useChatLIst from "../../hook/useChatLIst";
 
 const ChatUserContainer = ({ className }) => {
   const user = useSelector((state) => state.user);
   const [userChat, setUserChat] = useState([]);
 
-  const { data, isLoading } = useGetChatUserQuery(user._id);
+  const { data, isLoading } = useChatLIst();
   useEffect(() => {
     console.log(data);
     setUserChat(data);

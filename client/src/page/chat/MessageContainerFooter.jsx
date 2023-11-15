@@ -7,11 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { sendMsg } from "../../Rtk/slice/messageSlice";
 import axios from "axios";
 import { serverUrl, socket } from "../../utils";
+import useChatLIst from "../../hook/useChatLIst";
 
 const MessageContainerFooter = ({ id, scrollToBottom }) => {
   const user = useSelector((st) => st.user);
   const dispatch = useDispatch();
   const { register, reset, handleSubmit } = useForm();
+  const { refetch } = useChatLIst();
   const date = new Date();
 
   const sendMessage = (data) => {
@@ -30,6 +32,7 @@ const MessageContainerFooter = ({ id, scrollToBottom }) => {
       console.log(res.data);
       if (res.data.modifiedCount > 0) {
         socket.emit("new-msg", msgData, id);
+        refetch();
       }
     });
   };
