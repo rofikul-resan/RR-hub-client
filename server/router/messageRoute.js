@@ -7,12 +7,10 @@ msgRoute.post("/msg", async (req, res) => {
   const members = req.body;
   const user1 = members[0];
   const user2 = members[1];
-  console.log(members);
   try {
     const isExistMessage = await Message.findOne({
       $and: [{ "members.user": user1 }, { "members.user": user2 }],
     });
-    console.log(isExistMessage);
     if (!isExistMessage) {
       const message = new Message({
         members: [{ user: user1 }, { user: user2 }],
@@ -32,7 +30,10 @@ msgRoute.post("/msg", async (req, res) => {
 msgRoute.get("/msg/:id", async (req, res) => {
   const id = req.params.id;
   try {
-    const result = await Message.findById(id);
+    const result = await Message.findById(id).populate(
+      "members.user",
+      "name  email  isActive lastActive userPhoto"
+    );
     res.send(result);
   } catch (err) {
     console.log(err);
@@ -42,6 +43,7 @@ msgRoute.get("/msg/:id", async (req, res) => {
 
 msgRoute.get("/user", async (req, res) => {
   const userId = req.query.userId;
+  console.log("user", userId);
   try {
     const userMessage = await Message.find({
       "members.user": userId,
@@ -49,7 +51,6 @@ msgRoute.get("/user", async (req, res) => {
       .populate("members.user", "name  email  isActive lastActive userPhoto")
       .select({ messages: 0 })
       .sort({ updatedAt: -1 });
-    console.log(userMessage);
     res.send(userMessage);
   } catch (err) {
     console.log(err);
@@ -60,7 +61,6 @@ msgRoute.get("/user", async (req, res) => {
 msgRoute.put("/:id", async (req, res) => {
   const msg = req.body;
   const id = req.params.id;
-  console.log(msg);
   const result = await Message.updateOne(
     { _id: id },
     {

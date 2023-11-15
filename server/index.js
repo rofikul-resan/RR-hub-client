@@ -52,7 +52,7 @@ io.on("connection", (socket) => {
       const result = await User.updateOne(
         { _id: userId },
         {
-          $set: { isActive: false },
+          $set: { isActive: false, lastActive: Date.now() },
         }
       );
       socket.emit("setActive", { isActive: true });
