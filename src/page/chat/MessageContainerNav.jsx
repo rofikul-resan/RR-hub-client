@@ -7,7 +7,7 @@ import moment from "moment/moment";
 const MessageContainerNav = ({ userInfo }) => {
   const { user } = userInfo;
   return (
-    <Navbar className="bg-violet-600/30 backdrop-blur-md pl-7 ">
+    <Navbar className=" bg-transparent" isBordered>
       <NavbarContent>
         <Badge
           content=""
@@ -38,7 +38,7 @@ const MessageContainerNav = ({ userInfo }) => {
         </div>
       </NavbarContent>
       <NavbarContent justify="end">
-        <div className="text-white text-2xl flex gap-3">
+        <div className=" text-2xl flex gap-3">
           <div className="cursor-pointer">
             <AiOutlinePhone />
           </div>

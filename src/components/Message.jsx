@@ -10,7 +10,7 @@ const Message = ({ msg }) => {
       {msg && (
         <>
           {user?.name === msg?.author?.name && (
-            <div className="flex justify-end gap-2">
+            <div className="flex justify-end gap-2 z-10">
               <div className=" py-1 px-3 rounded-md bg-violet-700/40 backdrop-blur-sm max-w-xl shadow-inner shadow-teal-100/50 border-white/40 border">
                 <h3 className="capitalize font-semibold  text-orange-300">
                   {msg?.author?.name}
@@ -25,7 +25,7 @@ const Message = ({ msg }) => {
               <Avatar
                 radius="full"
                 className="transition-transform m-2 mt-auto -z-10"
-                color="success"
+                color="primary"
                 name={nameShorter(msg?.author?.name || "")}
                 size="sm"
                 src={msg?.author?.userPhoto}

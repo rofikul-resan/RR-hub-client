@@ -4,8 +4,6 @@ import ChatUserContainer from "../page/chat/ChatUserContainer";
 import { useEffect, useState } from "react";
 import { socket } from "../utils";
 import { useDispatch, useSelector } from "react-redux";
-import { Button } from "@nextui-org/react";
-import { GiHamburgerMenu, GiTireIronCross } from "react-icons/gi";
 import { setActive } from "../Rtk/slice/userSlice";
 
 const Chat = () => {
@@ -27,33 +25,16 @@ const Chat = () => {
 
   return (
     <div className="h-full">
-      <div className="absolute z-[101] top-3 left-1 md:hidden ">
-        <Button
-          isIconOnly
-          variant="bordered"
-          color="primary"
-          onClick={() => setIsShow(!isShow)}
-        >
-          {isShow ? (
-            <GiHamburgerMenu className="text-white" />
-          ) : (
-            <GiTireIronCross className="text-white" />
-          )}
-        </Button>
-      </div>
-      <div className="block md:grid  gap-4 chat-grid h-full p-2 ">
+      <div className="grid  gap-4 chat-grid h-full p-2 relative ">
         <ChatUserContainer
-          className={` md:static ${
-            !isShow
-              ? "-translate-x-[500px] md:translate-x-0 w-full h-full "
-              : " "
-          } duration-150  rounded-3xl bg-white/60 `}
+          isShow={isShow}
+          setIsShow={setIsShow}
+          className={` md:static  duration-150  rounded-3xl bg-white/40 ${
+            isShow && "hidden md:block"
+          } `}
         />
         <div
-          style={{ height: "100%" }}
-          className={`relative rounded-3xl bg-white/60 overflow-hidden  ${
-            !isShow ? "hidden" : ""
-          }`}
+          className={`relative rounded-3xl bg-white/40 overflow-hidden h-full `}
         >
           <Outlet />
         </div>

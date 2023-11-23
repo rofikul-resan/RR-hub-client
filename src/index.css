@@ -49,6 +49,11 @@ html {
   grid-template-columns: 1fr 3fr;
 }
 
+@media only screen and (max-width: 770px) {
+  .chat-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 
 .chat-info-bg {

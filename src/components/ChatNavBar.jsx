@@ -1,6 +1,5 @@
 import { Avatar, Image, Input } from "@nextui-org/react";
 import { AiOutlineSearch } from "react-icons/ai";
-import UserInfo from "./UserInfo";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -53,6 +52,10 @@ const ChatNavBar = () => {
       <div className="my-4 space-y-2">
         <Avatar src={user?.userPhoto} className="h-20 w-20 mx-auto" />
         <h1 className="text-2xl font-semibold text-center">{user?.name}</h1>
+        <div className="text-center text-xs font-semibold">
+          <p>Welcome {user?.name} to our application</p>
+          <p>Now start your messaging</p>
+        </div>
       </div>
       <Input
         classNames={{
