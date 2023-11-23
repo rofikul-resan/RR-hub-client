@@ -1,7 +1,7 @@
 import { Avatar, Badge, Navbar, NavbarContent } from "@nextui-org/react";
 import { nameShorter } from "../../utils";
 import { AiOutlinePhone, AiOutlineVideoCameraAdd } from "react-icons/ai";
-import { BsThreeDotsVertical } from "react-icons/bs";
+import { FaInfoCircle } from "react-icons/fa";
 import moment from "moment/moment";
 
 const MessageContainerNav = ({ userInfo }) => {
@@ -29,7 +29,7 @@ const MessageContainerNav = ({ userInfo }) => {
         </Badge>
         <div className="flex flex-col">
           <h1 className="font-semibold capitalize "> {user?.name}</h1>
-          <h1 className=" capitalize text-xs "> {user?.email}</h1>
+          <h1 className=" text-xs "> {user?.email}</h1>
           <p className="text-xs">
             {user?.isActive
               ? "Active Now"
@@ -46,7 +46,7 @@ const MessageContainerNav = ({ userInfo }) => {
             <AiOutlineVideoCameraAdd />
           </div>
           <div className="cursor-pointer">
-            <BsThreeDotsVertical />
+            <FaInfoCircle />
           </div>
         </div>
       </NavbarContent>
