@@ -1,8 +1,8 @@
 import axios from "axios";
 import { io } from "socket.io-client";
-export const serverUrl =
-  "https://rr-hub-social-server-production.up.railway.app";
-// export const serverUrl = "http://localhost:5000";
+// export const serverUrl =
+//   "https://rr-hub-social-server-production.up.railway.app";
+export const serverUrl = "http://localhost:5000";
 export const socket = io(serverUrl, { transports: ["websocket"] });
 
 export const nameShorter = (name) => {

@@ -16,7 +16,7 @@ const ChatUserContainer = ({ className }) => {
 
   return (
     <div className={className}>
-      <div className="chat-info-bg w-full bg-black/25  shadow-inner shadow-white ">
+      <div>
         <ChatNavBar />
         {isLoading ? (
           <div className="flex justify-center">

@@ -41,13 +41,20 @@ const Chat = () => {
           )}
         </Button>
       </div>
-      <div className="block md:grid  chat-grid h-full">
+      <div className="block md:grid  gap-4 chat-grid h-full p-2 ">
         <ChatUserContainer
-          className={`absolute md:static ${
-            isShow ? "-translate-x-[500px] md:translate-x-0 " : " "
-          } duration-150  z-[100] top-0  `}
+          className={` md:static ${
+            !isShow
+              ? "-translate-x-[500px] md:translate-x-0 w-full h-full "
+              : " "
+          } duration-150  rounded-3xl bg-white/60 `}
         />
-        <div style={{ height: "100%" }} className=" relative ">
+        <div
+          style={{ height: "100%" }}
+          className={`relative rounded-3xl bg-white/60 overflow-hidden  ${
+            !isShow ? "hidden" : ""
+          }`}
+        >
           <Outlet />
         </div>
       </div>

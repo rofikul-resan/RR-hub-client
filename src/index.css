@@ -23,21 +23,23 @@
 }
 
 html {
-  background: url("/main-bg.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  background: rgb(79, 22, 167);
+  background: linear-gradient(128deg, rgba(79, 22, 167, 1) 0%, rgba(39, 9, 77, 1) 37%, rgba(152, 48, 173, 1) 68%, rgba(79, 22, 167, 1) 100%);
 }
 
 #root {
   overflow: scroll;
   height: 100vh;
   scrollbar-width: none;
-  color: antiquewhite;
 
 }
 
 
+.chat-user-bg {
+  color: white;
+  background: rgb(79, 22, 167);
+  background: linear-gradient(128deg, rgb(56, 14, 110) 0%, rgb(129, 60, 231)100%);
+}
 
 .border-medium {
   border: 1px solid rgba(255, 255, 255, 0.5);

@@ -6,14 +6,16 @@ import { useSelector } from "react-redux";
 const ChatUser = ({ chat }) => {
   const user = useSelector((state) => state.user);
   const { pathname } = useLocation();
+  console.log(pathname);
 
   const otherUser = chat?.members?.filter((ur) => user._id !== ur?.user?._id);
   return (
     <Link to={`/chat/${chat._id}`}>
       <div
-        className={`flex gap-1 items-center px-2  ${
-          pathname === `/chat/${chat._id}` ? "bg-violet-500/70" : ""
-        } hover:bg-violet-500/70 rounded-md hover:translate-x-1 duration-250 cursor-pointer border-b border-zinc-600  mb-1 bg-black/30 shadow-inner shadow-teal-100/50  border`}
+        className={`flex gap-1 items-center   ${
+          pathname === `/chat/${chat._id}` ? "chat-user-bg translate-x-1" : ""
+        } hover:border-b hover:bg-white/20 rounded-full
+         hover:translate-x-1 duration-250 cursor-pointer  mb-1  `}
       >
         <Badge
           content=""
