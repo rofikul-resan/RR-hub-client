@@ -60,21 +60,25 @@ const MessageContainer = () => {
     (mbr) => mbr?.user?._id !== user?._id
   );
   return (
-    <div>
+    <div className="mt-auto">
       {loading || (
         <div>
           {otherUser && <MessageContainerNav userInfo={otherUser[0]} />}
-          <div
-            ref={messageBox}
-            className="message-container-h py-6 px-3  overflow-scroll "
-          >
-            <div className="flex gap-2 flex-col-reverse w-full  pb-10 ">
-              {msgs.map((msg, i) => (
-                <Message key={i} msg={msg} />
-              ))}
+          <div className="flex flex-col h-full mt-auto relative">
+            <div
+              ref={messageBox}
+              className="message-container-h py-6 px-3 overflow-scroll "
+            >
+              <div className="flex gap-2 flex-col-reverse w-full ">
+                {msgs.map((msg, i) => (
+                  <Message key={i} msg={msg} />
+                ))}
+              </div>
+            </div>
+            <div className="flex items-center absolute -bottom-28 w-full">
+              <MessageContainerFooter scrollToBottom={scrollToBottom} id={id} />
             </div>
           </div>
-          <MessageContainerFooter scrollToBottom={scrollToBottom} id={id} />
         </div>
       )}
     </div>

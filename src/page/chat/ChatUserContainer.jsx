@@ -5,6 +5,7 @@ import ChatUser from "./ChatUser";
 import { Button, Spinner } from "@nextui-org/react";
 import useChatLIst from "../../hook/useChatLIst";
 import { GiHamburgerMenu, GiTireIronCross } from "react-icons/gi";
+import SearchUser from "./SearchUser";
 
 const ChatUserContainer = ({ className, isShow, setIsShow }) => {
   const [userChat, setUserChat] = useState([]);
@@ -35,17 +36,26 @@ const ChatUserContainer = ({ className, isShow, setIsShow }) => {
           </div>
           <ChatNavBar />
         </div>
-        {isLoading ? (
-          <div className="flex justify-center">
-            <Spinner className=" w-fit mx-auto mt-16" />
-          </div>
-        ) : (
-          <div className="space-y-1 py-6 px-3  overflow-scroll h-fit max-h-[300px]">
-            {userChat?.map((chat) => (
-              <ChatUser key={chat._id} chat={chat} />
-            ))}
-          </div>
-        )}
+        <div className="bg-white/60  py-4 rounded-2xl mx-4 space-y-2">
+          <SearchUser />
+          {isLoading ? (
+            <div className="flex justify-center">
+              <Spinner className=" w-fit mx-auto mt-16" />
+            </div>
+          ) : (
+            <div className="space-y-1 pb-6  overflow-scroll h-fit user-container-h ">
+              {userChat?.map((chat) => (
+                <ChatUser key={chat._id} chat={chat} />
+              ))}
+              {userChat?.map((chat) => (
+                <ChatUser key={chat._id} chat={chat} />
+              ))}
+              {userChat?.map((chat) => (
+                <ChatUser key={chat._id} chat={chat} />
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

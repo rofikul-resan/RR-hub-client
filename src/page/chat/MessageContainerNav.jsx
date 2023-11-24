@@ -1,20 +1,20 @@
-import { Avatar, Badge, Navbar, NavbarContent } from "@nextui-org/react";
+import { Avatar, Badge } from "@nextui-org/react";
 import { nameShorter } from "../../utils";
 import { AiOutlinePhone, AiOutlineVideoCameraAdd } from "react-icons/ai";
-import { FaInfoCircle } from "react-icons/fa";
+import { IoMdInformationCircleOutline } from "react-icons/io";
 import moment from "moment/moment";
 
 const MessageContainerNav = ({ userInfo }) => {
   const { user } = userInfo;
   return (
-    <Navbar className=" bg-transparent" isBordered>
-      <NavbarContent>
+    <div className="flex items-center px-4 py-2 justify-between shadow-lg">
+      <div className="flex gap-2">
         <Badge
           content=""
           color="warning"
           shape="circle"
-          placement="bottom-right "
-          className="m-2 -right-1 -bottom-1"
+          placement="bottom-right"
+          className="m-2 right-1 bottom-3"
           isInvisible={!user?.isActive}
         >
           <Avatar
@@ -36,8 +36,8 @@ const MessageContainerNav = ({ userInfo }) => {
               : `Active ${moment(user?.lastActive).fromNow()}`}
           </p>
         </div>
-      </NavbarContent>
-      <NavbarContent justify="end">
+      </div>
+      <div>
         <div className=" text-2xl flex gap-3">
           <div className="cursor-pointer">
             <AiOutlinePhone />
@@ -46,11 +46,11 @@ const MessageContainerNav = ({ userInfo }) => {
             <AiOutlineVideoCameraAdd />
           </div>
           <div className="cursor-pointer">
-            <FaInfoCircle />
+            <IoMdInformationCircleOutline />
           </div>
         </div>
-      </NavbarContent>
-    </Navbar>
+      </div>
+    </div>
   );
 };
 

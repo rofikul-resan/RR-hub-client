@@ -29,12 +29,12 @@ const Chat = () => {
         <ChatUserContainer
           isShow={isShow}
           setIsShow={setIsShow}
-          className={` md:static  duration-150  rounded-3xl bg-white/40 ${
+          className={` md:static  duration-150  rounded-3xl bg-white/40 backdrop-blur-3xl ${
             isShow && "hidden md:block"
           } `}
         />
         <div
-          className={`relative rounded-3xl bg-white/40 overflow-hidden h-full `}
+          className={`relative rounded-3xl bg-white/40 overflow-hidden h-full backdrop-blur-3xl `}
         >
           <Outlet />
         </div>

@@ -1,8 +1,11 @@
-import { Input } from "@nextui-org/react";
+import { Button, Input } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import { AiOutlineCamera, AiOutlineSend } from "react-icons/ai";
 import { BiMicrophone } from "react-icons/bi";
-import { MdOutlineAddPhotoAlternate } from "react-icons/md";
+import {
+  MdOutlineAddPhotoAlternate,
+  MdOutlineEmojiEmotions,
+} from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { sendMsg } from "../../Rtk/slice/messageSlice";
 import axios from "axios";
@@ -38,33 +41,55 @@ const MessageContainerFooter = ({ id, scrollToBottom }) => {
   };
 
   return (
-    <div className="bg-black/40 backdrop-blur-md px-6 pt-4 pb-6 absolute bottom-0 right-0 clear-both w-full">
-      <div className="w-10/12 mx-auto flex  items-center gap-6">
+    <div className=" pb-6 w-full">
+      <div className="w-11/12 mx-auto flex  items-center gap-6 bg-white/60 px-12 py-3 rounded-full">
         <div className="flex text-xl gap-3">
-          <MdOutlineAddPhotoAlternate />
-          <AiOutlineCamera />
-          <BiMicrophone />
+          <Button
+            isIconOnly
+            className="bg-white/60 hover:bg-violet-600 hover:text-white"
+          >
+            <MdOutlineAddPhotoAlternate />
+          </Button>
+          <Button
+            isIconOnly
+            className="bg-white/60 hover:bg-violet-600 hover:text-white"
+          >
+            <AiOutlineCamera />
+          </Button>
+          <Button
+            variant="bordered"
+            isIconOnly
+            className="bg-white/60 hover:bg-violet-600 hover:text-white"
+          >
+            <BiMicrophone />
+          </Button>
         </div>
         <div className="flex-1">
-          <form onSubmit={handleSubmit(sendMessage)}>
+          <form className="flex gap-2" onSubmit={handleSubmit(sendMessage)}>
             <Input
               {...register("msg", { required: true })}
               autoComplete="off"
               variant="bordered"
               classNames={{
-                base: "max-w-full min-h-10 max-h-20 border-white/50 ",
+                base: "max-w-full min-h-10 max-h-20 ",
                 mainWrapper: "h-full",
                 input: "text-small",
                 innerWrapper: "border-0",
-                inputWrapper:
-                  "h-full font-normal text-white bg-default-400/20 dark:bg-default-500/20",
+                inputWrapper: "h-full font-normal  bg-white/40 ",
               }}
               endContent={
                 <button type="submit" className="cursor-pointer">
-                  <AiOutlineSend />
+                  <MdOutlineEmojiEmotions />
                 </button>
               }
             ></Input>
+            <Button
+              isIconOnly
+              className="bg-white/60 hover:bg-violet-600 hover:text-white"
+              type="submit"
+            >
+              <AiOutlineSend />
+            </Button>
           </form>
         </div>
       </div>

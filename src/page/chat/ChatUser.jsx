@@ -12,10 +12,12 @@ const ChatUser = ({ chat }) => {
   return (
     <Link to={`/chat/${chat._id}`}>
       <div
-        className={`flex gap-1 items-center   ${
-          pathname === `/chat/${chat._id}` ? "chat-user-bg translate-x-1" : ""
-        } hover:border-b hover:bg-white/20 rounded-full
-         hover:translate-x-1 duration-250 cursor-pointer  mb-1  `}
+        className={`flex gap-1 items-center shadow-inner shadow-teal-100/50  ${
+          pathname === `/chat/${chat._id}`
+            ? "chat-user-bg translate-x-2"
+            : " bg-zinc-200"
+        }  hover:bg-violet-800 hover:text-white rounded-full
+         hover:translate-x-2 duration-250 cursor-pointer  w-11/12 mx-auto mb-1  `}
       >
         <Badge
           content=""
@@ -26,6 +28,7 @@ const ChatUser = ({ chat }) => {
           isInvisible={!otherUser[0].user?.isActive}
         >
           <Avatar
+            isBordered
             radius="full"
             className="transition-transform m-2"
             color="secondary"
@@ -35,8 +38,14 @@ const ChatUser = ({ chat }) => {
           />
         </Badge>
         <div className="flex flex-col">
-          <h1 className="font-semibold "> {otherUser[0]?.user?.name}</h1>
-          <p className="text-xs">{chat?.lastMsg?.msg}</p>
+          <h1 className="font-semibold capitalize ">
+            {" "}
+            {otherUser[0]?.user?.name}
+          </h1>
+          <p className="text-xs">
+            {chat?.lastMsg?.msg?.slice(0, 20)}
+            {chat?.lastMsg?.msg?.length > 20 && "..."}
+          </p>
         </div>
       </div>
     </Link>

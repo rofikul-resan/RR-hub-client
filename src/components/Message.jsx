@@ -1,5 +1,4 @@
 import { Avatar } from "@nextui-org/react";
-import { AiFillCheckCircle } from "react-icons/ai";
 import { nameShorter } from "../utils";
 import { useSelector } from "react-redux";
 
@@ -11,29 +10,23 @@ const Message = ({ msg }) => {
         <>
           {user?.name === msg?.author?.name && (
             <div className="flex justify-end gap-2 z-10">
-              <div className=" py-1 px-3 rounded-md bg-violet-700/40 backdrop-blur-sm max-w-xl shadow-inner shadow-teal-100/50 border-white/40 border">
-                <h3 className="capitalize font-semibold  text-orange-300">
-                  {msg?.author?.name}
-                </h3>
+              <div className=" py-2 px-6  rounded-full chat-user-bg  max-w-lg shadow-inner shadow-teal-100/50">
                 <p className="text-sm"> {msg?.msg}</p>
               </div>
-              <AiFillCheckCircle className="text-[10px] text-orange-500 mt-auto" />
             </div>
           )}
           {user?.name !== msg?.author?.name && (
-            <div className="flex justify-start max-w-2xl gap-2">
+            <div className="flex justify-start items-center max-w-lg gap-2">
               <Avatar
+                isBordered
                 radius="full"
-                className="transition-transform m-2 mt-auto -z-10"
-                color="primary"
+                className=" m-2 "
+                color="secondary"
                 name={nameShorter(msg?.author?.name || "")}
                 size="sm"
                 src={msg?.author?.userPhoto}
               />
-              <div className=" py-1 px-3 rounded-md backdrop-blur-2xl max-w-xl shadow-inner shadow-teal-100/50 border-white/40 border w-60">
-                <h3 className="capitalize font-semibold  text-orange-300  mb-2">
-                  {msg?.author?.name}
-                </h3>
+              <div className=" py-2 px-6 rounded-full bg-white/60 max-w-xl ">
                 <p className="text-sm">{msg?.msg}</p>
               </div>
             </div>

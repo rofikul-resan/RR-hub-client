@@ -27,10 +27,14 @@ html {
   background: linear-gradient(128deg, rgba(79, 22, 167, 1) 0%, rgba(39, 9, 77, 1) 37%, rgba(152, 48, 173, 1) 68%, rgba(79, 22, 167, 1) 100%);
 }
 
+
 #root {
   overflow: scroll;
   height: 100vh;
   scrollbar-width: none;
+  max-width: 1400px;
+  margin: 0 auto;
+
 
 }
 
@@ -58,13 +62,15 @@ html {
 
 .chat-info-bg {
   min-height: 100vh;
-  height: 100%;
   box-shadow: -2px 0px 4px rgba(255, 254, 254, 0.3) inset;
   backdrop-filter: blur(8.4px);
   -webkit-backdrop-filter: blur(8.4px);
 }
 
 .message-container-h {
+  height: calc(100vh - 190px)
+}
 
-  height: calc(100vh - 100px);
+.user-container-h {
+  max-height: calc(100vh - 350px);
 }
