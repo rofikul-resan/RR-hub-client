@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { AiOutlineSearch } from "react-icons/ai";
+import { AiOutlineSearch, AiOutlineUsergroupAdd } from "react-icons/ai";
 import { nameShorter, serverUrl } from "../../utils";
 import { useSelector } from "react-redux";
 import { Avatar, Input } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
 
-const SearchUser = () => {
+const SearchUser = ({ onOpen }) => {
   const user = useSelector((s) => s.user);
   const navigate = useNavigate();
   const [searchKey, setSearchKey] = useState("");
@@ -34,6 +34,18 @@ const SearchUser = () => {
   };
   return (
     <div className="w-11/12 mx-auto">
+      <div className=" font-semibold my-2 flex justify-between">
+        <h3>Chat</h3>
+        <h3
+          onClick={onOpen}
+          className="hover:underline cursor-pointer flex gap-1 items-center"
+        >
+          <span>
+            <AiOutlineUsergroupAdd />{" "}
+          </span>
+          Create Group
+        </h3>
+      </div>
       <Input
         classNames={{
           base: "max-w-full  h-10 rounded-full ",

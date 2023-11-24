@@ -2,13 +2,17 @@ import { useEffect, useState } from "react";
 import ChatNavBar from "../../components/ChatNavBar";
 import ChatUser from "./ChatUser";
 
-import { Button, Spinner } from "@nextui-org/react";
+import { Button, Spinner, useDisclosure } from "@nextui-org/react";
 import useChatLIst from "../../hook/useChatLIst";
 import { GiHamburgerMenu, GiTireIronCross } from "react-icons/gi";
 import SearchUser from "./SearchUser";
+import CreateGroupModal from "./CreateGroupModal";
 
 const ChatUserContainer = ({ className, isShow, setIsShow }) => {
   const [userChat, setUserChat] = useState([]);
+
+  // modal state
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const { data, isLoading } = useChatLIst();
   useEffect(() => {
@@ -18,6 +22,7 @@ const ChatUserContainer = ({ className, isShow, setIsShow }) => {
 
   return (
     <div className={className}>
+      <CreateGroupModal isOpen={isOpen} onOpenChange={onOpenChange} />
       <div>
         <div className="flex">
           <div className=" md:hidden mt-4 ml-4 ">
@@ -37,7 +42,7 @@ const ChatUserContainer = ({ className, isShow, setIsShow }) => {
           <ChatNavBar />
         </div>
         <div className="bg-white/60  py-4 rounded-2xl mx-4 space-y-2">
-          <SearchUser />
+          <SearchUser onOpen={onOpen} />
           {isLoading ? (
             <div className="flex justify-center">
               <Spinner className=" w-fit mx-auto mt-16" />
