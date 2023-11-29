@@ -21,7 +21,7 @@ const Chat = () => {
     return () => {
       socket.off("message");
     };
-  }, [user._id, dispatch]);
+  }, [user?._id, dispatch]);
 
   return (
     <div className="h-full">

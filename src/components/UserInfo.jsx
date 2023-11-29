@@ -5,6 +5,7 @@ import {
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
+  Image,
 } from "@nextui-org/react";
 import { nameShorter } from "../utils";
 import { AiOutlineLogout } from "react-icons/ai";
@@ -16,14 +17,11 @@ const UserInfo = ({ user }) => {
   return (
     <Dropdown placement="bottom-start" className="mr-2 bg-black/80 text-white">
       <DropdownTrigger>
-        <Avatar
-          isBordered
-          as="button"
-          className="transition-transform  mr-2 w-7 h-7"
-          color="secondary"
-          name={nameShorter(user?.name)}
-          size="sm"
-          src={user?.userPhoto || ""}
+        <Image
+          src="/side-logo.svg"
+          className="rounded-none text-zinc-900 cursor-pointer"
+          height={25}
+          width={25}
         />
       </DropdownTrigger>
       <DropdownMenu aria-label="Profile Actions">

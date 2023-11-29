@@ -38,7 +38,7 @@ const PrivetRoute = ({ children }) => {
   if (loading) {
     return <DefaultChatBox />;
   } else {
-    if (user) {
+    if (user || !loading) {
       return children;
     } else {
       return <Navigate to={"/auth"} state={location.pathname} />;

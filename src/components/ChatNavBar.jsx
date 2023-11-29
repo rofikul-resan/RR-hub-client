@@ -2,6 +2,7 @@ import { Avatar, Image } from "@nextui-org/react";
 import { useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
+import UserInfo from "./UserInfo";
 
 const ChatNavBar = () => {
   const user = useSelector((s) => s.user);
@@ -10,12 +11,7 @@ const ChatNavBar = () => {
     <div className=" py-3 px-3 space-y-3 w-full ">
       <div className="flex justify-between  gap-3 flex-row-reverse w-10/12 pl-2 my-2 ml-auto md:w-full">
         <div className="flex items-center gap-2 pr-1">
-          <Image
-            src="/side-logo.svg"
-            className="rounded-none text-zinc-900"
-            height={30}
-            width={30}
-          />
+          <UserInfo />
         </div>
         <Link to={"/"} className="md:flex gap-2 items-center  ">
           <Image src="/logo.png" className="h-10 " />

@@ -52,12 +52,6 @@ const ChatUserContainer = ({ className, isShow, setIsShow }) => {
               {userChat?.map((chat) => (
                 <ChatUser key={chat._id} chat={chat} />
               ))}
-              {userChat?.map((chat) => (
-                <ChatUser key={chat._id} chat={chat} />
-              ))}
-              {userChat?.map((chat) => (
-                <ChatUser key={chat._id} chat={chat} />
-              ))}
             </div>
           )}
         </div>
