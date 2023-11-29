@@ -39,6 +39,7 @@ const Login = ({ setSelected, setAuthErr }) => {
     <form className="flex flex-col gap-4" onSubmit={handleSubmit(login)}>
       <Input
         {...register("email", { required: true })}
+        autoComplete="off"
         isRequired
         label="Email"
         placeholder="Enter your email"
@@ -51,6 +52,7 @@ const Login = ({ setSelected, setAuthErr }) => {
       />
       <Input
         {...register("password", { required: true })}
+        autoComplete="off"
         isRequired
         label="Password"
         placeholder="Enter your password"

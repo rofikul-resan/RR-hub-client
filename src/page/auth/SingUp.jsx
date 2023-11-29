@@ -84,6 +84,7 @@ const SingUp = ({ setSelected, setAuthErr }) => {
     <form onSubmit={handleSubmit(singUp)} className="flex flex-col gap-4 ">
       <Input
         {...register("name", { required: true })}
+        autoComplete="off"
         label="Name"
         placeholder="Enter your name"
         type="text"
@@ -95,6 +96,7 @@ const SingUp = ({ setSelected, setAuthErr }) => {
       />
       <Input
         {...register("email", { required: true })}
+        autoComplete="off"
         label="Email"
         placeholder="Enter your email"
         type="email"
@@ -106,6 +108,7 @@ const SingUp = ({ setSelected, setAuthErr }) => {
       />
       <Input
         {...register("password", { required: true })}
+        autoComplete="off"
         label="Password"
         placeholder="Enter your password"
         type={!isVisible ? "password" : "text"}

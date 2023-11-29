@@ -2,19 +2,26 @@ import { Avatar, Badge } from "@nextui-org/react";
 import { nameShorter } from "../../utils";
 import { AiOutlinePhone, AiOutlineVideoCameraAdd } from "react-icons/ai";
 import { IoMdInformationCircleOutline } from "react-icons/io";
+import { FaArrowLeft } from "react-icons/fa";
 import moment from "moment/moment";
+import { Link } from "react-router-dom";
 
 const MessageContainerNav = ({ userInfo }) => {
   const { user } = userInfo;
   return (
     <div className="flex items-center px-4 py-2 justify-between shadow-lg">
-      <div className="flex gap-2">
+      <div className="flex gap-2 ">
+        <div className="my-auto md:hidden">
+          <Link to={"/"}>
+            <FaArrowLeft />
+          </Link>
+        </div>
         <Badge
           content=""
           color="warning"
           shape="circle"
           placement="bottom-right"
-          className="m-2 right-1 bottom-3"
+          className="m-2 right-1 bottom-3 block"
           isInvisible={!user?.isActive}
         >
           <Avatar

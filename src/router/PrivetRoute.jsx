@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import DefaultChatBox from "../components/DefaultChatBox";
 import { useEffect, useState } from "react";
 import axios from "axios";

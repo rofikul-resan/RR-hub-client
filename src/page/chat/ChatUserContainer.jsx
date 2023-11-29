@@ -8,7 +8,7 @@ import { GiHamburgerMenu, GiTireIronCross } from "react-icons/gi";
 import SearchUser from "./SearchUser";
 import CreateGroupModal from "./CreateGroupModal";
 
-const ChatUserContainer = ({ className, isShow, setIsShow }) => {
+const ChatUserContainer = ({ className }) => {
   const [userChat, setUserChat] = useState([]);
 
   // modal state
@@ -24,24 +24,8 @@ const ChatUserContainer = ({ className, isShow, setIsShow }) => {
     <div className={className}>
       <CreateGroupModal isOpen={isOpen} onOpenChange={onOpenChange} />
       <div>
-        <div className="flex">
-          <div className=" md:hidden mt-4 ml-4 ">
-            <Button
-              isIconOnly
-              variant="bordered"
-              color="primary"
-              onClick={() => setIsShow(!isShow)}
-            >
-              {isShow ? (
-                <GiHamburgerMenu className="text-white" />
-              ) : (
-                <GiTireIronCross className="text-white" />
-              )}
-            </Button>
-          </div>
-          <ChatNavBar />
-        </div>
-        <div className="bg-white/60  py-4 rounded-2xl mx-4 space-y-2">
+        <ChatNavBar />
+        <div className="bg-white/60  py-4 mb-6 rounded-2xl mx-4 space-y-2">
           <SearchUser onOpen={onOpen} />
           {isLoading ? (
             <div className="flex justify-center">

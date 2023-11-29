@@ -18,14 +18,14 @@ const AuthLayout = () => {
     }
   }, [user, navigate]);
   return (
-    <div className="flex flex-col w-1/2 mx-auto mt-10 h-full">
+    <div className="flex flex-col md:w-1/2 mx-auto mt-10  p-6 ">
       {authErr && (
         <div className="bg-red-700/70 py-2 w-full fixed top-0 left-0">
           <p className="text-center font-semibold">{authErr}</p>
         </div>
       )}
       <Card className="max-w-full bg-transparent backdrop-blur py-5 shadow-md shadow-white/30 border border-white/40 ">
-        <CardBody className="overflow-hidden">
+        <CardBody className="">
           <Tabs
             fullWidth
             radius="full"
@@ -35,7 +35,7 @@ const AuthLayout = () => {
             aria-label="Tabs form"
             selectedKey={selected}
             onSelectionChange={setSelected}
-            className="w-1/2 mx-auto mb-7"
+            className="md:w-1/2 mx-auto mb-7"
             classNames={{
               tab: "text-xl py-4",
             }}

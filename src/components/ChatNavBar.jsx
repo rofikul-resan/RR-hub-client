@@ -1,16 +1,17 @@
 import { Avatar, Image } from "@nextui-org/react";
 import { useSelector } from "react-redux";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import UserInfo from "./UserInfo";
 import { nameShorter } from "../utils";
 
 const ChatNavBar = () => {
+  const { pathname } = useLocation();
   const user = useSelector((s) => s.user);
 
   return (
     <div className=" py-3 px-3 space-y-3 w-full ">
-      <div className="flex justify-between  gap-3 flex-row-reverse w-10/12 pl-2 my-2 ml-auto md:w-full">
+      <div className="flex justify-between  gap-3 flex-row-reverse  pl-2 my-2  md:w-full">
         <div className="flex items-center gap-2 pr-1">
           <UserInfo />
         </div>
@@ -19,7 +20,7 @@ const ChatNavBar = () => {
           <h1 className="text-2xl  font-semibold logo-font">RChat</h1>
         </Link>
       </div>
-      <div className="my-4 space-y-2">
+      <div className={`my-4 space-y-2 `}>
         <Avatar
           isBordered
           as="button"

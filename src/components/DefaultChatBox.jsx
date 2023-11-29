@@ -5,7 +5,7 @@ import { Image } from "@nextui-org/react";
 
 const DefaultChatBox = () => {
   return (
-    <div className="mt-[15vh]">
+    <div className="mt-[15vh] text-white">
       <div className="flex items-center justify-center w-[500px] mx-auto ">
         <Lottie animationData={animation} loop={true} />
       </div>

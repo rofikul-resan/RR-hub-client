@@ -34,8 +34,6 @@ html {
   scrollbar-width: none;
   max-width: 1400px;
   margin: 0 auto;
-
-
 }
 
 
@@ -53,11 +51,7 @@ html {
   grid-template-columns: 1fr 3fr;
 }
 
-@media only screen and (max-width: 770px) {
-  .chat-grid {
-    grid-template-columns: 1fr;
-  }
-}
+
 
 
 .chat-info-bg {
@@ -72,5 +66,17 @@ html {
 }
 
 .user-container-h {
-  max-height: calc(100vh - 350px);
+  max-height: calc(100vh - 355px);
+}
+
+
+
+@media only screen and (max-width: 768px) {
+  .chat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .user-container-h {
+    max-height: calc(100vh - 120px);
+  }
 }
