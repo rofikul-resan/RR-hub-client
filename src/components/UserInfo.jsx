@@ -7,7 +7,6 @@ import {
   DropdownTrigger,
   Image,
 } from "@nextui-org/react";
-import { nameShorter } from "../utils";
 import { AiOutlineLogout } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { logout } from "../Rtk/slice/userSlice";

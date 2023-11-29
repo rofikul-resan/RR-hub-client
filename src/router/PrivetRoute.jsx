@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import DefaultChatBox from "../components/DefaultChatBox";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -12,6 +12,7 @@ const PrivetRoute = ({ children }) => {
   const dispatch = useDispatch();
   const user = useSelector((st) => st.user);
   const token = localStorage.getItem("auth-token");
+
   useEffect(() => {
     setLoading(true);
     if (token) {
@@ -22,7 +23,6 @@ const PrivetRoute = ({ children }) => {
           },
         })
         .then((res) => {
-          setLoading(false);
           dispatch(updateUser(res.data));
           console.log("prv", res.data);
         })
@@ -31,14 +31,21 @@ const PrivetRoute = ({ children }) => {
           setLoading(false);
           console.log(err);
         });
+    } else {
+      setLoading(false);
     }
-    setLoading(false);
   }, [token, dispatch]);
+
+  useEffect(() => {
+    if (user) {
+      setLoading(false);
+    }
+  }, [user]);
 
   if (loading) {
     return <DefaultChatBox />;
   } else {
-    if (user || !loading) {
+    if (user && !loading) {
       return children;
     } else {
       return <Navigate to={"/auth"} state={location.pathname} />;

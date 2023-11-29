@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
 import UserInfo from "./UserInfo";
+import { nameShorter } from "../utils";
 
 const ChatNavBar = () => {
   const user = useSelector((s) => s.user);
@@ -19,7 +20,14 @@ const ChatNavBar = () => {
         </Link>
       </div>
       <div className="my-4 space-y-2">
-        <Avatar src={user?.userPhoto} className="h-20 w-20 mx-auto" />
+        <Avatar
+          isBordered
+          as="button"
+          className="h-20 w-20 mx-auto"
+          color="secondary"
+          name={nameShorter(user?.name) || ""}
+          src={user?.userPhoto || ""}
+        />
         <h1 className="text-2xl font-semibold text-center">{user?.name}</h1>
       </div>
     </div>

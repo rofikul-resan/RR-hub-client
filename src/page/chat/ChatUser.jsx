@@ -8,9 +8,9 @@ const ChatUser = ({ chat }) => {
   const { pathname } = useLocation();
   console.log(pathname);
 
-  const otherUser = chat?.members?.filter((ur) => user._id !== ur?.user?._id);
+  const otherUser = chat?.members?.filter((ur) => user?._id !== ur?.user?._id);
   return (
-    <Link to={`/chat/${chat._id}`}>
+    <Link to={`/chat/${chat?._id}`}>
       <div
         className={`flex gap-1 items-center shadow-inner shadow-teal-100/50  ${
           pathname === `/chat/${chat._id}`
