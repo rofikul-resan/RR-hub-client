@@ -1,7 +1,7 @@
 // import ChatNavBar from "../components/ChatNavBar";
 import { Outlet, useLocation } from "react-router-dom";
 import ChatUserContainer from "../page/chat/ChatUserContainer";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { socket } from "../utils";
 import { useDispatch, useSelector } from "react-redux";
 import { setActive } from "../Rtk/slice/userSlice";
@@ -9,7 +9,6 @@ import { setActive } from "../Rtk/slice/userSlice";
 const Chat = () => {
   const user = useSelector((state) => state.user);
   const { pathname } = useLocation();
-  const [isShow, setIsShow] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
