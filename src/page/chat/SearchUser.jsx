@@ -5,7 +5,6 @@ import { nameShorter, serverUrl } from "../../utils";
 import { useSelector } from "react-redux";
 import { Avatar, Input } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
-import { useGetUserForMsgQuery } from "../../Rtk/query/userApi";
 
 const SearchUser = ({ onOpen }) => {
   const user = useSelector((s) => s.user);
