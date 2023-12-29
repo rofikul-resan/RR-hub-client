@@ -8,7 +8,6 @@ import { sendMsg, setMessageState } from "../../Rtk/slice/messageSlice";
 import axios from "axios";
 import { serverUrl, socket } from "../../utils";
 import useChatLIst from "../../hook/useChatLIst";
-import TypingAnimation from "../../components/TypingAnimation";
 
 const MessageContainer = () => {
   const [loading, setLoading] = useState(true);
@@ -74,7 +73,6 @@ const MessageContainer = () => {
                 {msgs.map((msg, i) => (
                   <Message key={i} msg={msg} />
                 ))}
-                <TypingAnimation />
               </div>
             </div>
             <div className="flex items-center absolute -bottom-28 w-full">
