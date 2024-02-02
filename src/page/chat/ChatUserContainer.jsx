@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import ChatNavBar from "../../components/ChatNavBar";
 import ChatUser from "./ChatUser";
 
-import { Button, Spinner, useDisclosure } from "@nextui-org/react";
+import { Spinner, useDisclosure } from "@nextui-org/react";
 import useChatLIst from "../../hook/useChatLIst";
-import { GiHamburgerMenu, GiTireIronCross } from "react-icons/gi";
 import SearchUser from "./SearchUser";
 import CreateGroupModal from "./CreateGroupModal";
 
